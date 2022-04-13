@@ -1,5 +1,10 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_project, only: %i[ show edit update destroy ]
+
+  helper_method :admin_signed_in?
+  helper_method :current_admin
+  helper_method :admin_session
 
   # GET /projects or /projects.json
   def index
