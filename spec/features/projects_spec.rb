@@ -1,6 +1,8 @@
 require 'rails_helper'
+require_relative "../support/devise"
 
 RSpec.feature "Projects", type: :feature do
+    
   context "Create new project" do
     before(:each) do
       visit new_project_path

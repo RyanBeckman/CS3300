@@ -1,6 +1,10 @@
 require "rails_helper"
+require_relative "../support/devise"
 
 RSpec.describe ProjectsController, type: :controller do
+  
+  login_admin
+
   context "GET #index" do
     it "returns a success response" do
       get :index
