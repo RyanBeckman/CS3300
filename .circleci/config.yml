@@ -16,6 +16,7 @@ jobs:
   deploy:
     executor: heroku/default
     steps:
+      - heroku login
       - checkout
       - heroku/install
       - heroku/deploy-via-git
