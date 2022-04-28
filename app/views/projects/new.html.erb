@@ -1,5 +1,46 @@
-<h1>New Project</h1>
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<%= render 'form', project: @project %>
+  </head>
+  <body>
+    <p id="notice"><%= notice %></p>
+    
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+      <a class="navbar-brand" href="/">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-<%= link_to 'Back', projects_path %>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <% if admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "New Project", new_project_path, class: "nav-link" %>
+            </li>
+          <% end %>          
+        </ul>
+
+        <% if admin_signed_in? %>
+          <%= button_to "Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger my-2 my-sm-0" %>
+        <% else %>
+          <%= button_to "Sign Up", new_admin_registration_path, :method => "get", class: "btn btn-outline-info my-2 my-sm-0" %>    
+          <%= button_to "Log In", new_admin_session_path, class: "btn btn-outline-success my-2 my-sm-0" %>
+        <% end %>
+      </div>
+    </nav>
+
+    <h1 class="py-5 text-center">New Project</h1>
+
+    <%= render 'form', project: @project, form_class: "form-group" %>
+
+    <div class="container">
+        <%= button_to 'Cancel', projects_path, :method => "get", class: "btn btn-danger btn-sm" %>
+    </div>
+
+  </body>
+</html>

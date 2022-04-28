@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise'
+gem 'bootstrap', '~> 4.6.1'
+gem 'jquery-rails'
 
 group :production do
   gem 'pg', '~> 0.21' # for Heroku deployment
