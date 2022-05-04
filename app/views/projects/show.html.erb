@@ -1,58 +1,24 @@
-<!doctype html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<%= render template: 'projects/header' %>
+<p id="notice"><%= notice %></p>
 
-  </head>
-  <body>
-    <p id="notice"><%= notice %></p>
-    
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-      <a class="navbar-brand" href="/">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3"><%= @project.title %></h1>
+    <p><%= @project.description %></p>
+  </div>
+</div>
 
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <% if admin_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "New Project", new_project_path, class: "nav-link" %>
-            </li>
-          <% end %>          
-        </ul>
-
-        <% if admin_signed_in? %>
-          <%= button_to "Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger my-2 my-sm-0" %>
-        <% else %>
-          <%= button_to "Sign Up", new_admin_registration_path, :method => "get", class: "btn btn-outline-info my-2 my-sm-0" %>    
-          <%= button_to "Log In", new_admin_session_path, class: "btn btn-outline-success my-2 my-sm-0" %>
-        <% end %>
-      </div>
-    </nav>
-
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3"><%= @project.title %></h1>
-        <p><%= @project.description %></p>
-      </div>
+<div class="container">
+  <div class="btn-toolbar" role="toolbar" role="group">
+    <div class="btn-group" role="group">
+      <%= button_to 'Back', projects_path, :method => "get", class: "btn btn-info btn-sm" %>  
+      <% if admin_signed_in? %>
+        <%= button_to 'Edit', edit_project_path(@project), :method => "get", class: "btn btn-warning btn-sm" %>
+        <%= button_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+      <% end %>
     </div>
+  </div>
+</div>
 
-    <div class="container">
-      <div class="btn-toolbar" role="toolbar" role="group">
-        <div class="btn-group" role="group">
-          <%= button_to 'Back', projects_path, :method => "get", class: "btn btn-info btn-sm" %>  
-          <% if admin_signed_in? %>
-            <%= button_to 'Edit', edit_project_path(@project), :method => "get", class: "btn btn-warning btn-sm" %>
-            <%= button_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
 
 
