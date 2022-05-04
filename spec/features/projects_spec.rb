@@ -11,20 +11,16 @@ RSpec.feature "Projects", type: :feature do
     before(:each) do
       newAdmin
       visit new_project_path
-      within("form") do
-        fill_in "Title", with: "Test title"
-      end
+      fill_in "Title", with: "Test title"
     end
 
     scenario "should be successful" do
-      newAdmin
       fill_in "Description", with: "Test description"
       click_button "Create Project"
       expect(page).to have_content("Project was successfully created")
     end
 
     scenario "should fail" do
-      newAdmin
       click_button "Create Project"
       expect(page).to have_content("Description can't be blank")
     end
@@ -38,19 +34,13 @@ RSpec.feature "Projects", type: :feature do
     end
 
     scenario "should be successful" do
-      within("form") do
-        newAdmin
-        fill_in "Description", with: "New description content"
-      end
+      fill_in "Description", with: "New description content"
       click_button "Update Project"
       expect(page).to have_content("Project was successfully updated")
     end
 
     scenario "should fail" do
-      within("form") do
-        newAdmin
-        fill_in "Description", with: ""
-      end
+      fill_in "Description", with: ""
       click_button "Update Project"
       expect(page).to have_content("Description can't be blank")
     end
@@ -61,7 +51,7 @@ RSpec.feature "Projects", type: :feature do
     scenario "remove project" do
       newAdmin
       visit projects_path
-      click_link "Destroy"
+      click_button "Destroy"
       expect(page).to have_content("Project was successfully destroyed")
       expect(Project.count).to eq(0)
     end
